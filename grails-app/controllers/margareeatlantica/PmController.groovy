@@ -22,7 +22,6 @@ class PmController {
 		AuthUser user = authService.getSessionUser()
 		
 		// get all products
-		//List<GroovyRowResult> rows = groovySql.rows("SELECT `product_id`, `category_id`, `employee_id`, `name`, `cost`, `warranty_period`, `stock`,`status`,`reorder_level` FROM `product`")
 		List<GroovyRowResult> rows = groovySql.rows("SELECT product.product_id,product.name,product.category_id,category.category_name,cost,warranty_period,stock,product.status FROM product,category WHERE category.category_id=product.category_id ORDER BY product.status DESC")
 		
 		for (GroovyRowResult row : rows) {
@@ -149,7 +148,6 @@ class PmController {
 			}
 		}//end for
 		
-		//return [updateStatus: updateStatus, user: user, proposedProduct: proposedProduct, categoriesAndProducts: categories_products]
 		return [user: user, ProductsString: ProductsString, categoriesAndProducts: categories_products, ProductStatus:product_status]
 		
 	}//End launchProduct()
